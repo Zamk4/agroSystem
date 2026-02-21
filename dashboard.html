@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSystem - Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        /* Header y Navegación */
+        header {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2d6a4f;
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #495057;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2d6a4f;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+            color: white;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .welcome-section {
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h1 {
+            color: #212529;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-section p {
+            color: #6c757d;
+            font-size: 16px;
+        }
+
+        /* Grid de tarjetas */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card h2 {
+            color: #212529;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #6c757d;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .card-cultivos {
+            border-top: 4px solid #2d6a4f;
+        }
+
+        .card-ambiente {
+            border-top: 4px solid #52b788;
+        }
+
+        .card-dispositivos {
+            border-top: 4px solid #95d5b2;
+        }
+
+        /* Menú móvil */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #2d6a4f;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-section h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="dashboard.html" class="logo-nav">
+                🌱 AgroSystem
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="cultivos.html">Cultivos</a>
+                <a href="ambiente.html">Ambiente</a>
+                <a href="dispositivos.html">Dispositivos</a>
+                <a href="index.html" class="logout-btn">Cerrar Sesión</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Bienvenido al Dashboard</h1>
+            <p>Gestiona tus cultivos, monitorea el ambiente y controla tus dispositivos</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <a href="cultivos.html" class="card card-cultivos">
+                <span class="card-icon">🌾</span>
+                <h2>Cultivos</h2>
+                <p>Gestiona tus cultivos, asigna empleados y visualiza pedidos de clientes en tiempo real.</p>
+            </a>
+
+            <a href="ambiente.html" class="card card-ambiente">
+                <span class="card-icon">🌡️</span>
+                <h2>Ambiente</h2>
+                <p>Monitorea temperatura, humedad y turbidez del agua para optimizar el rendimiento.</p>
+            </a>
+
+            <a href="dispositivos.html" class="card card-dispositivos">
+                <span class="card-icon">📡</span>
+                <h2>Dispositivos</h2>
+                <p>Controla y configura tus dispositivos IoT con información detallada de cada sensor.</p>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
